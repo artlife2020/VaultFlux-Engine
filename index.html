@@ -1,0 +1,397 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+<meta charset="UTF-8">
+<title>VaultFlux Engine</title>
+<meta name="viewport" content="width=device-width, initial-scale=1.0">
+
+<style>
+body{
+    margin:0;
+    font-family:Arial;
+    background:#0f172a;
+    color:#e2e8f0;
+}
+
+.layout{
+    display:grid;
+    grid-template-columns: 1fr 2fr;
+    height:100vh;
+}
+
+.panel{
+    padding:20px;
+    overflow:auto;
+}
+
+.left{
+    background:#111827;
+    border-right:1px solid #334155;
+}
+
+.right{
+    background:#0b1220;
+}
+
+h1{
+    font-size:20px;
+}
+
+input,button{
+    width:100%;
+    padding:10px;
+    margin-top:10px;
+    border:none;
+    border-radius:6px;
+}
+
+button{
+    cursor:pointer;
+    background:#2563eb;
+    color:white;
+}
+
+button:hover{
+    background:#1d4ed8;
+}
+
+.log{
+    font-family:monospace;
+    font-size:13px;
+    margin-bottom:6px;
+    padding:6px;
+    border-left:3px solid #38bdf8;
+}
+
+.contract{
+    padding:10px;
+    margin-top:10px;
+    background:#1f2937;
+    border-radius:6px;
+}
+
+</style>
+</head>
+
+<body>
+
+<div class="layout">
+
+<div class="panel left">
+<h1>VaultFlux Engine</h1>
+
+<input id="coinName" placeholder="Coin name">
+<input id="coinAmount" type="number" placeholder="Amount">
+
+<button onclick="createCoin()">Create Coin</button>
+<button onclick="executeContracts()">Run Smart Contract</button>
+<button onclick="resetSystem()">Reset</button>
+
+<div id="contractView"></div>
+</div>
+
+<div class="panel right">
+<h1>Execution Log</h1>
+<div id="log"></div>
+</div>
+
+</div>
+
+<script>
+
+// Central application state
+const state = {
+    coins: [],
+    contracts: [],
+    logs: []
+};
+
+// Log helper
+function addLog(message){
+    state.logs.push(message);
+    renderLogs();
+}
+
+// Create coin object
+function createCoin(){
+
+    const name = document.getElementById("coinName").value.trim();
+    const amount = Number(document.getElementById("coinAmount").value);
+
+    if(!name || amount <= 0){
+        alert("Invalid input");
+        return;
+    }
+
+    state.coins.push({
+        name:name,
+        amount:amount,
+        locked:false
+    });
+
+    addLog("Coin created: " + name + " (" + amount + ")");
+
+    document.getElementById("coinName").value = "";
+    document.getElementById("coinAmount").value = "";
+
+    renderContracts();
+}
+
+// Simulate smart contract execution
+function executeContracts(){
+
+    state.coins.forEach(c => {
+
+        if(!c.locked && c.amount >= 10){
+            c.locked = true;
+            addLog("Smart Contract executed on: " + c.name);
+        }
+
+    });
+
+    renderContracts();
+}
+
+// Reset system state
+function resetSystem(){
+    state.coins = [];
+    state.logs = [];
+    addLog("System reset executed");
+    renderContracts();
+}
+
+// Render contract view
+function renderContracts(){
+
+    const view = document.getElementById("contractView");
+    view.innerHTML = "";
+
+    state.coins.forEach(c => {
+
+        const box = document.createElement("div");
+        box.className = "contract";
+
+        box.<!DOCTYPE html>
+<html lang="en">
+<head>
+<meta charset="UTF-8">
+<title>VaultFlux Engine</title>
+<meta name="viewport" content="width=device-width, initial-scale=1.0">
+
+<style>
+body{
+    margin:0;
+    font-family:Arial;
+    background:#0f172a;
+    color:#e2e8f0;
+}
+
+.layout{
+    display:grid;
+    grid-template-columns: 1fr 2fr;
+    height:100vh;
+}
+
+.panel{
+    padding:20px;
+    overflow:auto;
+}
+
+.left{
+    background:#111827;
+    border-right:1px solid #334155;
+}
+
+.right{
+    background:#0b1220;
+}
+
+h1{
+    font-size:20px;
+}
+
+input,button{
+    width:100%;
+    padding:10px;
+    margin-top:10px;
+    border:none;
+    border-radius:6px;
+}
+
+button{
+    cursor:pointer;
+    background:#2563eb;
+    color:white;
+}
+
+button:hover{
+    background:#1d4ed8;
+}
+
+.log{
+    font-family:monospace;
+    font-size:13px;
+    margin-bottom:6px;
+    padding:6px;
+    border-left:3px solid #38bdf8;
+}
+
+.contract{
+    padding:10px;
+    margin-top:10px;
+    background:#1f2937;
+    border-radius:6px;
+}
+
+</style>
+</head>
+
+<body>
+
+<div class="layout">
+
+<div class="panel left">
+<h1>VaultFlux Engine</h1>
+
+<input id="coinName" placeholder="Coin name">
+<input id="coinAmount" type="number" placeholder="Amount">
+
+<button onclick="createCoin()">Create Coin</button>
+<button onclick="executeContracts()">Run Smart Contract</button>
+<button onclick="resetSystem()">Reset</button>
+
+<div id="contractView"></div>
+</div>
+
+<div class="panel right">
+<h1>Execution Log</h1>
+<div id="log"></div>
+</div>
+
+</div>
+
+<script>
+
+// Central application state
+const state = {
+    coins: [],
+    contracts: [],
+    logs: []
+};
+
+// Log helper
+function addLog(message){
+    state.logs.push(message);
+    renderLogs();
+}
+
+// Create coin object
+function createCoin(){
+
+    const name = document.getElementById("coinName").value.trim();
+    const amount = Number(document.getElementById("coinAmount").value);
+
+    if(!name || amount <= 0){
+        alert("Invalid input");
+        return;
+    }
+
+    state.coins.push({
+        name:name,
+        amount:amount,
+        locked:false
+    });
+
+    addLog("Coin created: " + name + " (" + amount + ")");
+
+    document.getElementById("coinName").value = "";
+    document.getElementById("coinAmount").value = "";
+
+    renderContracts();
+}
+
+// Simulate smart contract execution
+function executeContracts(){
+
+    state.coins.forEach(c => {
+
+        if(!c.locked && c.amount >= 10){
+            c.locked = true;
+            addLog("Smart Contract executed on: " + c.name);
+        }
+
+    });
+
+    renderContracts();
+}
+
+// Reset system state
+function resetSystem(){
+    state.coins = [];
+    state.logs = [];
+    addLog("System reset executed");
+    renderContracts();
+}
+
+// Render contract view
+function renderContracts(){
+
+    const view = document.getElementById("contractView");
+    view.innerHTML = "";
+
+    state.coins.forEach(c => {
+
+        const box = document.createElement("div");
+        box.className = "contract";
+
+        box.innerHTML =
+            "<strong>" + c.name + "</strong><br>" +
+            "Amount: " + c.amount + "<br>" +
+            "Locked: " + c.locked;
+
+        view.appendChild(box);
+
+    });
+
+}
+
+// Render logs
+function renderLogs(){
+
+    const logBox = document.getElementById("log");
+    logBox.innerHTML = "";
+
+    state.logs.forEach(l => {
+
+        const div = document.createElement("div");
+        div.className = "log";
+        div.textContent = l;
+
+        logBox.appendChild(div);
+
+    });
+
+}
+
+// Initial render
+renderContracts();
+
+</script>
+
+</body>
+</html> =
+            "<strong>" + c.name + "</strong><br>" +
+            "Amount: " + c.amount + "<br>" +
+            "Locked: " + c.locked;
+
+        view.appendChild(box);
+
+    });
+
+}
+
+// Render logs
+function renderLogs(){
+
+    const logBox = document.getElementById("log");
+    logBox.innerHTML = "";
